@@ -12,7 +12,12 @@ let homeView = document.querySelector('.home-view');
 let randCoverButton = document.querySelector('.random-cover-button');
 let saveCoverButton = document.querySelector('.save-cover-button');
 let homeButton = document.querySelector('.home-button');
-let viewSavedButton = document.querySelector('.view-saved-button')
+let viewSavedButton = document.querySelector('.view-saved-button');
+let makeBookButton = document.querySelector('.create-new-book-button');
+let coverInput = document.querySelector('#cover');
+let titleInput = document.querySelector('#title');
+let describe1 = document.querySelector('#descriptor1');
+let describe2 = document.querySelector('#descriptor2');
 
 form.classList.add('hidden');
 homeButton.classList.add('hidden');
@@ -21,6 +26,7 @@ homeButton.classList.add('hidden');
 makeCoverButton.addEventListener('click', coverButtonClick);
 homeButton.addEventListener('click', homeButtonClick);
 viewSavedButton.addEventListener('click', viewSavedCovers);
+makeBookButton.addEventListener('click', makeMyBook)
 
 // Create your event handlers and other functions here 👇
 function coverButtonClick() {
@@ -46,6 +52,22 @@ function viewSavedCovers() {
   homeButton.classList.remove('hidden');
   form.classList.add('hidden');
 }
+
+function makeMyBook(e) {
+  e.preventDefault();
+  if (coverInput && titleInput && describe1 && describe2){
+    createCover(coverInput.value, titleInput.value, describe1.value, describe2.value);
+
+    coverInput.value = '';
+    titleInput.value = '';
+    describe1.value = '';
+    describe2.value = '';
+
+  } else {
+    return;
+  }
+}
+
 
 // We've provided two functions to get you started
 function getRandomIndex(array) {
