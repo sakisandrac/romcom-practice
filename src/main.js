@@ -18,6 +18,10 @@ let coverInput = document.querySelector('#cover');
 let titleInput = document.querySelector('#title');
 let describe1 = document.querySelector('#descriptor1');
 let describe2 = document.querySelector('#descriptor2');
+let coverImage = document.querySelector('.cover-image');
+let coverTitle = document.querySelector('.cover-title');
+let tagline1 = document.querySelector('.tagline-1');
+let tagline2 = document.querySelector('.tagline-2')
 
 form.classList.add('hidden');
 homeButton.classList.add('hidden');
@@ -56,12 +60,27 @@ function viewSavedCovers() {
 function makeMyBook(e) {
   e.preventDefault();
   if (coverInput && titleInput && describe1 && describe2){
-    createCover(coverInput.value, titleInput.value, describe1.value, describe2.value);
+      let newBook = createCover(coverInput.value, titleInput.value, describe1.value, describe2.value);
 
-    coverInput.value = '';
-    titleInput.value = '';
-    describe1.value = '';
-    describe2.value = '';
+      savedCovers.push(newBook);
+      covers.push(coverInput.value);
+      titles.push(titleInput.value);
+      descriptors.push(describe1.value, describe2.value);
+
+      form.classList.add('hidden');
+      homeView.classList.remove('hidden');
+
+      coverImage.src = coverInput.value;
+      coverTitle.innerHTML = titleInput.value;
+      tagline1.innerHTML = describe1.value;
+      tagline2.innerHTML = describe2.value;
+
+      coverInput.value = '';
+      titleInput.value = '';
+      describe1.value = '';
+      describe2.value = '';
+
+      return savedCovers;
 
   } else {
     return;
